@@ -22,7 +22,7 @@ function islandora_book_upload_page_form(array $form, array &$form_state) {
     return isset($form_state['values'][$name]) ? $form_state['values'][$name] : $default;
   };
   $upload_size = min((int) ini_get('post_max_size'), (int) ini_get('upload_max_filesize'));
-  $extensions = array('tiff tif');
+  $extensions = array('tiff tif jp2 jpg2');
   $languages = islandora_ocr_get_enabled_tesseract_languages();
   return array(
     'file' => array(
