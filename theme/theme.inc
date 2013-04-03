@@ -109,6 +109,21 @@ function islandora_book_preprocess_islandora_book_pages(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_theme().
+ */
+function islandora_book_preprocess_islandora_book_toc(array &$variables) {
+  $object = $variables['object'];
+  $toc_from_datastream = array();
+
+  if (isset($object['TOC']))
+  {
+    $toc_from_datastream = drupal_json_decode($object['TOC']->content);
+  }
+
+  $variables['toc_entries'] = $toc_from_datastream;
+}
+
+/**
  * Implements theme_form_id().
  */
 function theme_islandora_book_manage_book_sequences_form($variables) {
