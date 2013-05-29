@@ -121,6 +121,12 @@ function islandora_book_preprocess_islandora_book_toc(array &$variables) {
   }
 
   $variables['toc_entries'] = $toc_from_datastream;
+  $module_path = drupal_get_path('module', 'islandora_book');
+  $library_path = libraries_get_path('jstree-v.pre1.0');
+  drupal_add_js("$library_path/_lib/jquery.js");
+  drupal_add_js("$library_path/_lib/jquery.cookie.js");
+  drupal_add_js("$library_path/jquery.jstree.js");
+  drupal_add_js("$module_path/js/toc-tree.js");
 }
 
 /**
