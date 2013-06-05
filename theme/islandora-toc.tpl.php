@@ -22,7 +22,7 @@
       <?php     endfor; ?>
       <?php     print "</li><li id='$nodeid'>"; ?>
       <?php endif; ?>
-      <?php print l($toc_entry['title'], "islandora/object/{$object->id}", array('fragment' => "page/{$toc_entry['pagenum']}/mode/1up")); ?>
+      <?php print l($toc_entry['title'], "islandora/object/{$object->id}", array('fragment' => "page/{$toc_entry['pagenum']}/mode/2up")); ?>
       <?php $lastlevel = $currentlevel ?>
   <?php endforeach; ?>
   <?php if ($lastlevel > 0): ?>
