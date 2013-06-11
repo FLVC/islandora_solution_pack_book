@@ -1,0 +1,184 @@
+/*-- Check for Browser :
+
+#test1 {
+font-weight:bold;
+font-size:14px;
+color:orange;
+voice-family:"\"}\"";
+voice-family:inherit;
+color:black;
+}
+html*#test1 {[color:red;color:blue;]color:purple;}
+.dummyend[id]{clear:both;}
+* html #test1 {color:green;}
+ 
+<div id="test1">
+If you see black, you are using a newer Standarized browser like Opera or Mozilla.<br>
+If you see red, you are using an older version of Mozilla (< version 1.01).<br>
+If you see blue, you are using Macintosh Safari Only (versions 1 through 3).<br>
+If you see purple, you are using Internet Explorer 7!<br>
+If you see green, you are using Internet Explorer 6!<br>
+If you see orange, you are using a Internet Explorer 5!.<br>
+</div>
+--*/
+
+* { margin:0; padding:0; border:none; }
+html { height:100%}
+body        { background-color: #ffffff; color: #32322f; margin: 0px; padding: 0px;
+              font-family: 'Arial Unicode MS',Arial,verdana,serif;font-size: 100%;height:100%;}
+img         { border:0; }
+#contentwrap { width:80%; height: 100%; margin: 0px 0 30px 0; padding: 0 0 5px 10px; float:left;}
+a:link, a:visited {color: #0F76A7;font-size: 100%;  text-decoration: none }
+a:hover     { color: #0552a5; font-size: 100%; text-decoration: underline }
+.no_wrap  { white-space: nowrap;}
+.center { text-align:center;}
+.hide {display: none;}
+.bordered_input, select {border:#7F9DB9 1px solid;}
+.alignLeft { float:left}
+.alignRight { float:right}
+
+/*--------------------Top Frame---------------*/
+/*----- Header -----*/
+#header     { background-color: #EAF3E8; height: 29px; background-image:url(../images/bg_header.gif); background-repeat:repeat-x; width:100%}
+#logo { width: 40%; height: 26px; padding-left:0.5em; float:left; min-width:244px; padding-top:0.16em;}
+#logo img { margin-left:0; width: 244px; height:26px; float:left}
+
+#toolboxContainer {font-size:80%;float:right; width:59%;  }
+#toolboxContainer ul{ padding-right:1em; padding-top:5px;}
+#toolboxContainer ul li {padding:0px; padding-right:5px; padding-left:5px; float:right; list-style:none;}
+#toolboxContainer li a{ color:#32322f; text-decoration:none;}
+#toolboxContainer li a:hover {text-decoration: underline; }
+#toolboxContainer li span{ width:1px;background-image:url(../images/toolbox_separator.gif); float:left; margin-right:5px; background-repeat: no-repeat; margin-top:5px;}
+
+/*--------main bar-----------*/
+#mainBar { background-color:#E0EDF3; height:27px; border-bottom:1px solid #6DB5C6; font-size:80%; padding-left:0.8em;}
+#mainBar form { padding-top:2px; }
+#mainBar form select { font-size:100%; width:15.5em; margin-right:0.5em;}
+#pageNav{ padding-right:1em; padding-top:5px;}
+#pageNav li {padding:0px; padding-right:5px; padding-left:5px; float:left; list-style:none;}
+#pageNav li a{ color:#32322f; text-decoration:none;}
+#pageNav li a:hover {text-decoration: underline; }
+
+/*--------breadcrumbs-----------*/
+#breadCrumbs {background-color:#FFF09D; height:26px; border-bottom:1px solid #CFDDAB; font-size:80%; }
+#breadCrumbs div{ margin-left:0.8em; padding-top:3px; }
+
+/*--------------------Left Frame---------------*/
+#searchBar{ background-color:#E0EDF3; height:31px; border-bottom:1px solid #ffffff; border-top:1px solid #ffffff; font-size:80%; padding-left:0.8em; }
+#searchBar input{ padding-top:4px}
+
+/*search results bar*/
+#searchResultsBar{ background-color:#F8F9FB; height:29px; border-bottom:2px solid #C0DDEA; border-top:2px solid #C0DDEA; font-size:80%; padding-left:0em;line-height:200%; width:100%}
+#searchTerm { padding-left:0.8em}
+/*search panel*/
+#searchResultsBar.searchPanel{ height:88px; overflow:hidden;padding-left:0.8em;} /*search panel open*/
+#searchResultsBar.searchPanel div.alignLeft { width:30%; padding-top:4px;padding-left:0em}
+#searchResultsBar.searchPanel div.alignRight { width:64%; text-align:right;clear:right;}
+#searchResultsBar.searchPanel div.searchLabel { width:50%; margin-bottom:0em; padding-left:0em}
+#searchResultsBar.searchPanel div.searchInput { width:50%; margin-bottom:0em;}
+#searchResultsBar.searchPanel div.searchInput input { width:14px; height:12px}
+#searchResultsBar.searchPanel div.alignRight input { float:right; margin-right:1em;margin-top:0.5em;}
+#searchResultsBar.searchPanel div.alignLeft label { display:block; padding:0px; margin:0px}
+#searchResultsBar.searchPanel { width:100%; clear:both; margin-bottom:0.5em }
+#searchResultsBar.searchPanel input,#searchResultsBar.searchPanel select { color:#1378A8;margin:0px; width:60%; border:1px solid #7F9DB9;  }
+#searchResultsBar.searchPanel input.btnGo { background-color:#D9E7F8; background-image:url(../images/bg_btn_go.gif); background-repeat:repeat-x; height:18px; border:1px solid #7F9DB9; color:#000000; margin-left:5px; font-size:85%; font-weight:bold; width:3em; line-height:150% }
+
+
+/*advanced search panel*/
+#searchResultsBar.advanced{ height:170px; overflow:hidden;} /*advanced search panel open*/
+#searchResultsBar.advanced input.checkbox{ width:auto; height:auto; border:none;} /*advanced search panel open*/
+#searchResultsBar.advanced div.separator {border-bottom:2px solid #C0DDEA; width:100%; margin-left:-0.8em; height:2px;}
+* html #searchResultsBar.advanced div.separator { margin-top:-15px}/*for IE6 only*/
+
+
+#searchBox { margin-bottom:0.5em;}
+#matchBar { padding-right:5px; padding-bottom:5px; clear:right;}
+#matchBar img{ padding-right:10px; vertical-align:top ; padding-top:9px;  }
+#matchBar input { font-size:100%; width:100px; margin-right:0.5em; text-align:center; border:1px solid #D7DDE3; margin-top:4px; }
+
+#searchResultsParent {overflow:auto; height:88%}
+#searchResults {padding:2px 2px 2px 5px;height:90%}
+#tree { padding:2px 2px 2px 5px;height:90%; width:99%;overflow:auto;overflow-x:hidden;}
+html * #tree { [padding:12px 2px 2px 5px;padding:12px 2px 2px 5px;]padding:2px 2px 2px 2px;height:90%; width:99%;overflow:auto;overflow-x:hidden;}
+* html #tree { padding:2px 2px 2px 5px;height:90%; width:99%;overflow:auto;overflow-x:hidden;}
+#tree_div { padding:2px 5px 5px 0px;}
+html * #tree_div { [padding:2px 2px 2px 2px;padding:2px 5px 5px 0px;]padding:0px 0px 0px 0px;}
+* html #tree_div { padding-top:2px 2px 2px 2px;}
+#tree ul { width:100% ; }
+#tree li {font-size:100%; color:#8c8d8c; list-style:none; padding-bottom:0px;padding-top:0px; line-height:1.35em; vertical-align:text-top}
+
+#levelTwoUL li {text-indent:15px;}
+#levelThreeUL li {text-indent:30px;}
+#treeUL {font-size:80%;}
+#treeUL a:link {color:#0F76A7;}
+#treeUL a:hover { text-decoration:underline}
+#treeUL img {margin-right:4px; width:9px; height:9px; cursor:pointer; margin-left:10px;}
+#treeUL li.selectedItem{ background-color:#FFF09D; width:100%; display:block}
+
+
+ul.levelOneUL{margin-left:0em;margin-right:0em; font-size:12px}
+ul.levelOneUL li { color:#10125E; padding-top:2px; padding-bottom:1px; border:0px; list-style-position:outside; list-style:none; clear:both; width:100%;}
+ul.levelOneUL li span {float:left; clear:both; margin-left:25px; margin-top:-17px;}
+ul.levelOneUL li span.bidi {float:none; margin-left:0px}
+ul.levelOneUL li a{text-decoration:none; font-weight:normal; color:blue;}
+ul.levelOneUL li img { margin-right:0.5em; width:9px; display:inline}
+ul.levelOneUL li a:hover{ text-decoration:underline}
+ul.levelTwoUL { margin-left:20px; margin-right:0em; }
+ul.levelTwoUL li{ border:0px; font-size:100%}
+ul.levelTwoUL li a{ font-weight:normal;}
+ul.levelTwoUL img {cursor:pointer;  }
+ul.indentUL { margin-left:20px; margin-right:0em; }
+
+#results { height:82%;overflow:auto}
+#results table { width:99%; font-size:75%;}
+* html #results table { width:95%; font-size:75%;}
+#results th { border-bottom:1px solid #3A97C3; text-align:left}
+#results th.center {border-bottom:1px solid #3A97C3; text-align:center}
+#results td { padding:3px; border-bottom:1px solid #D7DDE3 }
+#results tr.selected { background-color:#FFF09D }
+
+
+
+
+
+
+/*--------------------Right Frame---------------*/
+/*First bar*/
+#objectBar{ background-color:#F8F9FB; height:31px; border-top:1px solid #3DA4C3; font-size:80%; padding-left:0.8em;}
+#objectBar img{ padding-right:0.5em; vertical-align:middle ; }
+#objectBar form { padding-top:5px; }
+#objectBar form select { font-size:100%; width:12em; margin-right:0.5em;}
+#objectBar form input { font-size:100%; width:8em; margin-right:0.5em; text-align:center; border:1px solid #D7DDE3}
+#isSeqExist{ background-color:#F8F9FB; height:31px; border-top:1px solid #3DA4C3; font-size:80%; padding-left:0.8em;}
+
+
+/*second bar*/
+#metaBar{ background-color:#C0DDEA; height:31px; border-bottom:1px solid #3DA4C3; border-top:1px solid #3DA4C3; font-size:80%; padding-left:0.8em;}
+#metaBar span{ line-height:200%; vertical-align:bottom; margin-right:0.3em }
+#metaBar img{ padding-right:0.5em; vertical-align:bottom ; padding-top:0.5em}
+
+/*third bar*/
+#viewBar{ background-color:#EEF4F7; height:29px; border-top:2px solid #C0DDEA; border-bottom:1px solid #D7DDE3; font-size:80%; padding-left:0.8em;}
+#viewBar span{ line-height:200%; vertical-align:bottom; margin-right:0.3em;}
+#viewBar p{ line-height:200%; vertical-align:bottom; margin-right:0.3em; font-weight:bold; padding-right:1.8em; }
+#viewBar.tdLabel{ line-height:200%; vertical-align:bottom; text-align:center; margin-right:0.3em; font-weight:bold }
+#viewBar img{ padding-right:0.5em; vertical-align:bottom ; padding-top:0.5em}
+
+/*manifistations bar*/
+#viewBar1{ background-color:#EEF4F7; height:29px; border-top:2px solid #C0DDEA; border-bottom:1px solid #D7DDE3; font-size:80%; padding-left:0.8em;}
+#viewBar1 span{ line-height:200%; vertical-align:bottom; margin-right:0.3em;}
+#viewBar1 p{ line-height:200%; vertical-align:bottom; margin-right:0.3em; font-weight:bold; padding-right:1.8em; }
+#viewBar1.tdLabel{ line-height:200%; vertical-align:bottom; text-align:center; margin-right:0.3em; font-weight:bold }
+#viewBar1 img{ padding-right:0.5em; vertical-align:bottom ; padding-top:0.5em}
+
+/*fourth bar*/
+#displayBar{ background-color:#EEF4F7; height:30px; border-bottom:1px solid #D7DDE3; font-size:80%; padding-left:0.8em;}
+#displayBar ul{ display:inline;list-style:none;padding-top:2px; padding-right:2px; margin-top:2px;}
+#displayBar ul li {padding:0px; list-style:none; display:inline;list-style:none;}
+#displayBar ul li a{ border:0px solid #EEF4F7;padding-top:1px; padding-right:1px; margin-top:1px;}
+#displayBar ul li a:hover{ background-color:#FFFFFF; border:0px outset #D7DDE3; }
+#displayBar li span{ width:1px;background-image:url(../images/separator_display.png); margin-right:2px; background-repeat: no-repeat; margin-top:1px;}
+
+/*Obeject Pane*/
+#objectPane { width:100%;height:82% }
+#objectPane div {overflow: auto; height:100%}

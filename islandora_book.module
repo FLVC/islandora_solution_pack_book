@@ -306,7 +306,8 @@ function islandora_book_islandora_pageCModel_islandora_solr_object_result_alter(
     $page_number = $search_results['solr_doc'][$page_number_field_name][0];
     $search_results['object_url'] = "islandora/object/$book_pid";
     //$search_results['object_url_fragment'] = "page/$page_number/mode/1up";
-    $search_results['object_url_fragment'] = "page/$page_number/mode/2up";
+    $page_index_number = strval(intval($page_number) - 1);
+    $search_results['object_url_fragment'] = "page/n$page_index_number/mode/2up";
   }
 }
 
