@@ -67,6 +67,14 @@ function islandora_book_menu() {
       'file path' => drupal_get_path('module', 'islandora_paged_content'),
       'file' => 'includes/manage_page.inc',
     ),
+    'islandora/object/%islandora_object/toc' => array(
+      'title' => 'Table of Contents',
+      'type' => MENU_LOCAL_TASK,
+      'page callback' => 'islandora_book_toc_menu',
+      'page arguments' => array(2),
+      'access callback' => 'islandora_book_toc_access_callback',
+      'access arguments' => array(2),
+    ),
   );
 }
 
@@ -84,6 +92,11 @@ function islandora_book_theme() {
       'arguments' => array('object' => NULL),
       'file' => 'theme/theme.inc',
       'template' => 'theme/islandora-page',
+    ),
+    'islandora_book_toc' => array(
+      'arguments' => array('object' => NULL),
+      'file' => 'theme/theme.inc',
+      'template' => 'theme/islandora-toc',
     ),
   );
 }
@@ -351,3 +364,35 @@ function islandora_book_pages_menu(AbstractObject $object) {
   $pages = islandora_paged_content_get_pages($object);
   return theme('islandora_objects', array('objects' => array_keys($pages)));
 }
+
+/**
+ * Determine whether or not to show this modules table of contents tab.
+ *
+ * @param FedoraObject $object
+ *   The book object.
+ *
+ * @return bool
+ *   TRUE if it should be shown, and FALSE if it should not be shown.
+ */
+function islandora_book_toc_access_callback($object = NULL) {
+  if (!isset($object)) {
+    return FALSE;
+  }
+  $is_book = in_array('islandora:bookCModel', $object->models);
+  $is_toc = isset($object['TOC']);
+  return $is_book && $is_toc && islandora_object_access_callback(FEDORA_VIEW_OBJECTS, $object);
+}
+
+/**
+ * Renders the Table of Contents local menu task.
+ *
+ * @param FedoraObject $object
+ *   The book object to fetch the pages from.
+ *
+ * @return string
+ *   The HTML repersentation of the given books pages.
+ */
+function islandora_book_toc_menu(FedoraObject $object) {
+  return theme('islandora_book_toc', array('object' => $object));
+}
+
