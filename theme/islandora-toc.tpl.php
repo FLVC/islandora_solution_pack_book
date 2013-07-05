@@ -4,7 +4,11 @@
  *
  */
 ?>
-<h3>Table of Contents</h3>
+<?php if (isset($toc_entries['title'])): ?>
+  <?php $booktitle = $toc_entries['title']; ?>
+  <?php print "<h3>$booktitle</h3>"; ?>
+<?php endif; ?>
+<h4>Table of Contents</h4>
 <div id="toctree" class="islandora-toc">
   <?php $lastlevel = 0 ?>
   <?php foreach($toc_entries['table_of_contents'] as $toc_entry): ?>
