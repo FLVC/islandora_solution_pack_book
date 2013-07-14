@@ -235,13 +235,14 @@ function islandora_book_islandora_pageCModel_islandora_solr_object_result_alter(
     // number as a fragment.
     $book_pid = preg_replace('/info\:fedora\//', '', $search_results['solr_doc'][$parent_book_field_name][0], 1);
     $page_number = $search_results['solr_doc'][$page_number_field_name][0];
+    $page_index = intval($page_number) - 1;  // switching to page index
 
     if (islandora_object_access(FEDORA_VIEW_OBJECTS, islandora_object_load($book_pid))) {
       $search_results['object_url'] = "islandora/object/$book_pid";
 
       // XXX: Won't handle fielded searches nicely... then again, if our
       // highlighting field is not the one being search on, this makes sense?
-      $search_results['object_url_fragment'] = "page/$page_number/mode/1up/search/" . rawurlencode($query_processor->solrQuery);
+      $search_results['object_url_fragment'] = "page/n$page_index/mode/2up/search/" . rawurlencode($query_processor->solrQuery);
     }
   }
 }
