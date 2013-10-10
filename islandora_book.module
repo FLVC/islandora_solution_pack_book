@@ -26,7 +26,7 @@ function islandora_book_menu() {
       'page arguments' => array(2),
       'access callback' => 'islandora_user_access',
       'access arguments' => array(
-        2, array(FEDORA_VIEW_OBJECTS), array('islandora:bookCModel'),
+        2, array(ISLANDORA_VIEW_OBJECTS), array('islandora:bookCModel'),
       ),
     ),
     'islandora/object/%islandora_object/manage/book' => array(
@@ -45,7 +45,7 @@ function islandora_book_menu() {
       'page arguments' => array(2),
       'type' => MENU_LOCAL_ACTION,
       'access callback' => 'islandora_object_access',
-      'access arguments' => array(FEDORA_INGEST, 2),
+      'access arguments' => array(ISLANDORA_INGEST, 2),
       'file' => 'includes/manage_book.inc',
     ),
     'islandora/object/%islandora_object/manage/book/ingest_zipped' => array(
@@ -54,7 +54,7 @@ function islandora_book_menu() {
       'page arguments' => array(2),
       'type' => MENU_LOCAL_ACTION,
       'access callback' => 'islandora_object_access',
-      'access arguments' => array(FEDORA_INGEST, 2),
+      'access arguments' => array(ISLANDORA_INGEST, 2),
       'file' => 'includes/manage_book.inc',
     ),
     'islandora/object/%islandora_object/manage/book_page' => array(
@@ -84,7 +84,7 @@ function islandora_book_menu() {
 function islandora_book_theme() {
   return array(
     'islandora_book_book' => array(
-      'arguments' => array('object' => NULL),
+      'variables' => array('object' => NULL),
       'file' => 'theme/theme.inc',
       'template' => 'theme/islandora-book',
     ),
@@ -117,17 +117,12 @@ function islandora_book_islandora_xml_form_builder_form_associations() {
   );
 }
 
-
 /**
  * Implements hook_islandora_xml_form_builder_forms().
  */
 function islandora_book_islandora_xml_form_builder_forms() {
   $module_path = drupal_get_path('module', 'islandora_book');
-  return array(
-    'Islandora Book MODS Form' => array(
-      'form_file' => "$module_path/data/forms/book_form_mods.xml",
-    ),
-  );
+  return array('Islandora Book MODS Form' => array('form_file' => "$module_path/data/forms/book_form_mods.xml"));
 }
 
 /**
@@ -243,7 +238,7 @@ function islandora_book_islandora_pageCModel_islandora_solr_object_result_alter(
     $page_number = $search_results['solr_doc'][$page_number_field_name][0];
     $page_index = intval($page_number) - 1;  // switching to page index
 
-    if (islandora_object_access(FEDORA_VIEW_OBJECTS, islandora_object_load($book_pid))) {
+    if (islandora_object_access(ISLANDORA_VIEW_OBJECTS, islandora_object_load($book_pid))) {
       $search_results['object_url'] = "islandora/object/$book_pid";
 
       // XXX: Won't handle fielded searches nicely... then again, if our
@@ -274,43 +269,37 @@ function islandora_book_islandora_pagecmodel_islandora_ingest_steps(array $form_
 }
 
 /**
- * Implements hook_CMODEL_PID_islandora_object_ingested().
+ * Implements hook_islandora_derivative().
+ *
+ * XXX: Should add in ability to regenerate PDFs as well... No reliable way to
+ * kick off a batch though...
  */
-function islandora_book_islandora_pagecmodel_islandora_object_ingested(AbstractObject $object) {
+function islandora_book_islandora_bookcmodel_islandora_derivative() {
+  $pc_module_path = drupal_get_path('module', 'islandora_paged_content');
+
+  $derivatives = array();
+
   module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
-  $success = TRUE;
   $derive = islandora_paged_content_get_enabled_ingest_derivatives('islandora_book');
-  if ($derive['pdf']) {
-    $success &= islandora_paged_content_can_derive($object, 'PDF') && islandora_paged_content_page_derive_pdf_datastream($object);
-  }
+
   if ($derive['image']) {
-    $derived_images = islandora_paged_content_can_derive($object, 'JP2') && islandora_paged_content_page_derive_image_datastreams($object);
-    if ($derived_images) {
-      $book_pid = islandora_paged_content_get_relationship($object->relationships, FEDORA_RELS_EXT_URI, 'isMemberOf', NULL);
-      $book_object = islandora_object_load($book_pid);
-      if ($book_object) {
-        islandora_paged_content_update_paged_content_thumbnail($book_object);
-      }
-    }
-    $success &= $derived_images;
+    $derivatives[] = array(
+      'source_dsid' => NULL,
+      'destination_dsid' => 'TN',
+      'function' => array('islandora_paged_content_derive_thumbnail_of_parent'),
+      'file' => "$pc_module_path/includes/derivatives.inc",
+    );
   }
 
-  // Logic for OCR generation from islandora_book_batch.
-  $generate_ocr = 'TRUE';
-  $batch_ocr = $object->relationships->get(ISLANDORA_RELS_EXT_URI, 'generate_ocr');
-  if ($batch_ocr) {
-    $generate_ocr = $batch_ocr[0]['object']['value'];
-  }
-  if ($derive['ocr'] && $generate_ocr == 'TRUE') {
-    $success &= islandora_paged_content_can_derive($object, 'OCR') && islandora_paged_content_page_derive_ocr_datastreams($object);
-  }
+  return $derivatives;
+}
 
-  if (!$success) {
-    $msg = t('Could not create all derivatives for %s, For more information, please check the logs.', array(
-      '%s' => $object->id));
-    drupal_set_message($msg, 'error');
-    return FALSE;
-  }
+/**
+ * Implements hook_islandora_derivative().
+ */
+function islandora_book_islandora_pagecmodel_islandora_derivative(AbstractObject $object = NULL) {
+  module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
+  return islandora_paged_content_page_derivatives($object, 'islandora_book');
 }
 
 /**
