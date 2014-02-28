@@ -27,7 +27,7 @@
       <?php     print "</li><li id='$nodeid'>"; ?>
       <?php endif; ?>
       <?php $pageindex = intval($toc_entry['pagenum']) - 1; ?>
-      <?php print l($toc_entry['title'], "islandora/object/{$object->id}", array('fragment' => "page/n{$pageindex}/mode/2up")); ?>
+      <?php print l($toc_entry['title'], "islandora/object/{$object->id}", array('fragment' => "page/n{$pageindex}/mode/2up", 'html' => 'TRUE')); ?>
       <?php $lastlevel = $currentlevel ?>
   <?php endforeach; ?>
   <?php if ($lastlevel > 0): ?>
