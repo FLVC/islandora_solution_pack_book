@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Allows for the creation of book and page objects (islandora:bookCModel,islandora:pageCModel). Books are essentially a collection pages, containing only metadata and optionally a PDF file of the book. A book's PDF can be generated from each page. Pages are based on an uploaded tiff of the page. From the uploaded TIFF it is possible to generate images for use in the "Islandora Internet Archive Bookreader". It is also possible to generate PDF files per page. OCR and OCR coordinate data can also be generated from the uploaded TIFF.
+Allows for the creation of book and page objects (islandora:bookCModel,islandora:pageCModel). Books are essentially a collection of pages, containing only metadata and optionally a PDF file of the book. A book's PDF can be generated from each page. Pages are based on an uploaded tiff of the page. From the uploaded TIFF its possible to generate images for use in the "Islandora Internet Archive Bookreader". It is also possible to generate PDF files per page. OCR and OCR coordinate data can also be generated from the uploaded TIFF.
 
 ## Requirements
 
@@ -20,9 +20,13 @@ Install as usual, see [this](https://drupal.org/documentation/install/modules-th
 
 ## Configuration
 
-Select configuration options for page derivatives, Parent Solr Field, and select a viewer for the book object and page objects in Administration » Islandora » Book Collection (admin/islandora/book).
+Select configuration options for page derivatives, Parent Solr Field, and select a viewer for the book object and page objects in Administration » Islandora » Solution pack configuration (admin/islandora/solution_pack_config/book).
 
-![Configuration](http://i.imgur.com/7ICJfeZ.png)
+![Configuration](https://camo.githubusercontent.com/e913af25f82dd8ff640dd11b337f64b5a9dea62f/687474703a2f2f692e696d6775722e636f6d2f3749434a66655a2e706e67)
+
+## Documentation
+
+Further documentation for this module is available at [our wiki](https://wiki.duraspace.org/display/ISLANDORA/Book+Solution+Pack).
 
 ## Troubleshooting/Issues
 
@@ -34,11 +38,11 @@ Having problems or solved a problem? Check out the Islandora google groups for a
 ## Maintainers/Sponsors
 Current maintainers:
 
-* [Alan Stanley](https://github.com/ajstanley)
+* [Nick Ruest](https://github.com/ruebot)
 
 ## Development
 
-If you would like to contribute to this module, please check out our helpful [Documentation for Developers](https://github.com/Islandora/islandora/wiki#wiki-documentation-for-developers) info, as well as our [Developers](http://islandora.ca/developers) section on the Islandora.ca site.
+If you would like to contribute to this module, please check out [CONTRIBUTING.md](CONTRIBUTING.md). In addition, we have helpful [Documentation for Developers](https://github.com/Islandora/islandora/wiki#wiki-documentation-for-developers) info, as well as our [Developers](http://islandora.ca/developers) section on the [Islandora.ca](http://islandora.ca) site.
 
 ## License
 
