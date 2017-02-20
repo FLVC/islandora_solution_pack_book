@@ -117,4 +117,3 @@ function template_process_islandora_book_page(array &$variables) {
     }
   }
 }
-
